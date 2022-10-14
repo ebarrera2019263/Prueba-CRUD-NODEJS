@@ -1,0 +1,71 @@
+<% include partials/_header %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-7">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <td>id</td>
+            <td>Marca</td>
+            <td>Modelo</td>
+            <td>Año</td>
+            <td>placa</td>
+            <td>estado</td>
+          </tr>
+        </thead>
+        <style>
+           .div-1 {
+            float: right;
+           }
+        </style>
+        <tbody>
+          <% if (data) { %>
+            <% for(var i = 0; i < data.length; i++) { %>
+              <tr>
+                <td><%= (i + 1) %></td>
+                <td><%= data[i].marca %></td>
+                <td><%= data[i].modelo %></td>
+                <td><%= data[i].anio %></td>
+                <td><%= data[i].placa %></td>
+                <td><%= data[i].estado %></td>
+                <td>
+                  <a href="/update/<%= data[i].id %>" class="btn btn-info">Edit</a>
+                  <a href="/delete/<%= data[i].id %>" class="btn btn-danger">Delete</a>
+                </td><br>
+              </tr>
+            <% } %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+    <div class="div-1 col-md-12" >
+      <div class="card-body">
+
+        <form action="/add" method="POST">
+          <div class="form-group">
+            <input type="text" name="marca" placeholder="marca" class="form-control" autofocus>
+          </div>
+          <div class="form-group">
+            <input type="text" name="modelo" placeholder="modelo" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="text" name="anio" placeholder="año" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="text" name="placa" placeholder="placa" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="text" name="estado" placeholder="estado" class="form-control">
+          </div>
+
+          <button type="submit" class="btn btn-primary">
+            save customer
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include partials/_footer %>
